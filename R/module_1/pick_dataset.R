@@ -40,3 +40,21 @@ plot1 <- dat_sg |>
   theme_minimal()
 
 ggplotly(plot1, tooltip = "text")
+
+
+#plot by industry with hover effect
+plot2 <- dat_sg |>
+  count(industry_name, skill_group_name) |>
+  ggplot(aes(x = reorder(industry_name, -n), y = n, fill = skill_group_name, text = skill_group_name)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Tech Skill Group Distribution by Industry",
+    x = "Industry",
+    y = "Frequency",
+    fill = "Skill Group"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggplotly(plot2, tooltip = "text")
+
