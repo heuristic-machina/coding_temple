@@ -24,7 +24,7 @@ dat_sg |> distinct(skill_group_name)
 #1 Digital Literacy                      
 #2 Scientific Computing   
 
-#visual plot
+#visual plot with hover effect
 library(plotly)
 
 plot1 <- dat_sg |>
