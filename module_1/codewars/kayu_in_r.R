@@ -48,6 +48,7 @@ stat(times)
 #[1] "Range: 00|47|18 Average: 01|35|15 Median: 01|32|34"
 
 
+
 #2 If we list all the natural numbers below 10 that are multiples of 3 or 5, we 
 #get 3, 5, 6 and 9. The sum of these multiples is 23. Finish the solution so 
 #that it returns the sum of all the multiples of 3 or 5 below the number passed
@@ -62,3 +63,33 @@ solution <- function(n) {
 solution(10)
 #[1] 23
 
+
+
+#3 Given two arrays of strings a1 and a2 return a sorted array r in 
+#lexicographical order of the strings of a1 which are substrings of strings of a2.
+#Example 1: 
+#a1 = ["arp", "live", "strong"] 
+#a2 = ["lively", "alive", "harp", "sharp", "armstrong"] 
+#returns ["arp", "live", "strong"] 
+
+#Example 2: 
+#a1 = ["tarp", "mice", "bull"] 
+#a2 = ["lively", "alive", "harp", "sharp", "armstrong"] 
+#returns []
+
+inArray <- function(a1, a2) {
+  #global, regular expression logical grepl()
+  #no duplicates and output as vector
+  result <- unique(a1[sapply(a1, function(x) any(grepl(x, a2, fixed=TRUE)))])
+  if(length(result)==0) return(NULL)
+  sort(result)
+}
+
+a1 <- c("arp", "live", "strong")
+a2 <- c("lively", "alive", "harp", "sharp", "armstrong")
+inArray(a1, a2)
+#> [1] "arp"    "live"   "strong"
+
+a1 <- c("tarp", "mice", "bull")
+inArray(a1, a2)
+#> character(0)
